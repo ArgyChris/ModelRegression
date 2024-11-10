@@ -13,30 +13,30 @@ The purpose of this exercise was to develop models to solve the problem of predi
 Structure of the project:
 
 ModelRegression
-
-
-├── **application.py**
-
-├── **data_preprocessing_model_dev.py**
-
+.
+├── application.py
+├── data_preprocessing_model_dev.py
 ├── data_preprocessing.py
-
 ├── Dockerfile
-
-├── **exploratory_data_analysis.ipynb**
-
+├── exploratory_data_analysis.ipynb
+├── Figure_1.png
+├── Figure_2.png
 ├── model.pkl
-
 ├── models.py
-
 ├── model_training.py
-
+├── __pycache__
+│   ├── application.cpython-313.pyc
+│   ├── application.cpython-37.pyc
+│   ├── data_preprocessing.cpython-313.pyc
+│   ├── data_preprocessing.cpython-37.pyc
+│   ├── models.cpython-313.pyc
+│   ├── models.cpython-37.pyc
+│   ├── model_training.cpython-313.pyc
+│   └── model_training.cpython-37.pyc
+├── README.md
 ├── requirements_app.txt
-
 ├── requirements_model_dev.txt
-
 ├── scaler_X.pkl
-
 └── scaler_Y.pkl
 
 
