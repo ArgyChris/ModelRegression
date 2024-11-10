@@ -13,7 +13,7 @@ This project aims to develop models to predict housing values in California. The
 ---
 
 ## Project Structure
---------------------------------------------
+
 Brief description:
 
 The purpose of this exercise was to develop models to solve the problem of predicting the house value in the state of California.
@@ -78,13 +78,13 @@ The project uses custom class wrappers for scikit-learn's pipeline modules, allo
 
 **File:** `application.py`  
 
-A REST API application built with FastAPI is accessible locally via Swagger. The application processes client-server communication for predictions using a POST request, passing feature values as part of the payload to adhere to security standards. Our custom preprocessing pipelines are used here to prepare the user input before scoring with the model.
+A REST API application built with FastAPI is accessible locally via Swagger. The application processes client-server communication for predictions using a POST request, passing feature values as part of the payload to adhere to security standards. Our custom preprocessing pipelines are used here to prepity:**The current application is simplified to accept a single input payload per request, and in the future we plan to allow the user to upload fileare the user input before scoring with the model.
 
 ### 4. Other Considerations
 
-**File:** `Dockerfile`  
+**File:** `Dockerfile` , `models.py` 
 
-The application was containerized with Docker to ensure platform independence, as the development was done on a Linux environment. Detailed documentation and logging are included throughout the project to improve readability, facilitate debugging, and enhance maintainability.
+The application was containerized with Docker to ensure platform independence, as the development was done on a Linux environment. Detailed documentation and logging are included throughout the project to improve readability, facilitate debugging, and enhance maintainability. Also in the application we implemented the pydantic to control the API parameters input. 
 
 ---
 
@@ -138,4 +138,5 @@ This project lays the infrastructure for a predictive model and a serving applic
 
 **Model Optimization and Expansion:** Currently, the model has not been optimized, and we’ve focused primarily on baseline algorithms (Linear Regression and Decision Tree). In future iterations, we aim to incorporate more advanced models, such as Random Forest, Gradient Boosting, or neural networks, and perform hyperparameter tuning to improve predictive performance.
 
-**Enhanced API Functionality:**The current application is simplified to accept a single input payload per request, and in the future we plan to allow the user to upload files.
+**Enhanced API Functionality:** The current application is simplified to accept a single input payload per request, and in the future we plan to allow the user to upload files.
+
