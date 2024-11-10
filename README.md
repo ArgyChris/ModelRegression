@@ -78,7 +78,7 @@ The project uses custom class wrappers for scikit-learn's pipeline modules, allo
 
 **File:** `application.py`  
 
-A REST API application built with FastAPI is accessible locally via Swagger. The application processes client-server communication for predictions using a POST request, passing feature values as part of the payload to adhere to security standards. Our custom preprocessing pipelines are used here to prepity:**The current application is simplified to accept a single input payload per request, and in the future we plan to allow the user to upload fileare the user input before scoring with the model.
+A REST API application built with FastAPI is accessible locally via Swagger. The application processes client-server communication for predictions using a POST request, passing feature values as part of the payload to adhere to security standards. Our custom preprocessing pipelines are usable and here are used here to preprocess the input. The current application is simplified to accept a single input payload per request, and in the future we plan to allow the user to upload fileare the user input before scoring with the model.
 
 ### 4. Other Considerations
 
@@ -88,7 +88,7 @@ The application was containerized with Docker to ensure platform independence, a
 
 ---
 
-## Installation and Setup
+## Installation and Running
 
 ### 1. Clone the Repository
 
@@ -104,7 +104,7 @@ source ModelRegression/bin/activate
 
 pip install -r requirements_model_dev.txt
 
-### 2i. Create Environment (Linux in conda)
+### 2i. Create Environment (conda in Linux)
 
 **Linux:** conda create -n "ModelRegression" python=3.7.9
 
