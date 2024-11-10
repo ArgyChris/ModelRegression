@@ -131,3 +131,11 @@ uvicorn application:app --host 0.0.0.0 --port 8000 --reload
 **Windows/Linux:** http://0.0.0.0:8000/docs
 
 ---
+
+### Future Considerations
+
+This project lays the infrastructure for a predictive model and a serving application, but several improvements are planned for future development:
+
+**Model Optimization and Expansion:** Currently, the model has not been optimized, and we’ve focused primarily on baseline algorithms (Linear Regression and Decision Tree). In future iterations, we aim to incorporate more advanced models, such as Random Forest, Gradient Boosting, or neural networks, and perform hyperparameter tuning to improve predictive performance.
+
+**Enhanced API Functionality:**The current application is simplified to accept a single input payload per request, and in the future we plan to allow the user to upload files.
