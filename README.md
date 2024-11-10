@@ -1,82 +1,133 @@
 ## Model Regression on California Housing Market
 
 
-Author: Argy Christodoulidis, Ph.D.
+**Author:** Argy Christodoulidis, Ph.D. 
+ 
+**Date:** 10/11/2024  
 
-Date: 10/11/2024
 
+## Project Overview
+
+This project aims to develop models to predict housing values in California. The solution includes data preprocessing, model training, and a REST API to serve predictions.
+
+---
+
+## Project Structure
 --------------------------------------------
 Brief description:
 
 The purpose of this exercise was to develop models to solve the problem of predicting the house value in the state of California.
 
-Structure of the project:
+Project structure:
 
 ModelRegression
-.
-├── application.py
-├── data_preprocessing_model_dev.py
+
+├── **application.py**
+
+├── **data_preprocessing_model_dev.py**
+
 ├── data_preprocessing.py
+
 ├── Dockerfile
-├── exploratory_data_analysis.ipynb
-├── Figure_1.png
-├── Figure_2.png
+
+├── **exploratory_data_analysis.ipynb**
+
 ├── model.pkl
+
 ├── models.py
+
 ├── model_training.py
-├── __pycache__
-│   ├── application.cpython-313.pyc
-│   ├── application.cpython-37.pyc
-│   ├── data_preprocessing.cpython-313.pyc
-│   ├── data_preprocessing.cpython-37.pyc
-│   ├── models.cpython-313.pyc
-│   ├── models.cpython-37.pyc
-│   ├── model_training.cpython-313.pyc
-│   └── model_training.cpython-37.pyc
-├── README.md
+
 ├── requirements_app.txt
+
 ├── requirements_model_dev.txt
+
 ├── scaler_X.pkl
+
 └── scaler_Y.pkl
 
 
-For this purpose the following where developed:
+### Contents:
+1. A Jupyter Notebook for exploratory data analysis
+2. Scripts for data preprocessing and model development
+3. A REST API application to serve predictions
 
-1) A python notebook for exploratory data analysis
+---
 
-2) Code to perform data preprocessing and model development
+## Approach
 
-3) An application based on simple REST API to serve prediction
+### 1. Data Exploration
 
-is
-----------------------------------------------
+**File:** `exploratory_data_analysis.ipynb`  
 
-Approach:
+In this step, we explored the dataset to identify any characteristics that require special handling. This included checking for missing values, data types, duplicates, and abnormal data distributions. Visualizations were also generated for better data understanding.
 
-### Data exploration:
+### 2. Data Preprocessing and Model Development
 
-code in exploratory_data_analysis.ipynb
+**Files:** `data_preprocessing_model_dev.py`, `data_preprocessing.py`  
 
-The first step was the data exploration to identify special characteristics of the dataset that require extra care and attention in order to prepare the dataset for the model development phase, such as to check for missing values, data types, duplicates, or abnormal data distributions. Also, we generated visualizations for better data interpretation.
+The project uses custom class wrappers for scikit-learn's pipeline modules, allowing for flexible configuration and modularity.
 
-### Data preprocessing and model development
+- **Data Preprocessing:**  
+  The `data_preprocessing.py` script handles various preprocessing tasks, including data downloading, imputation, one-hot encoding, feature engineering, and stratified sampling. The modular design enables reuse of these preprocessing functions in both model training and prediction serving.
 
-code in data_preprocessing_model_dev.py
+- **Model Development:**  
+  The `data_preprocessing_model_dev.py` script includes a dynamic model selection pipeline. Users can choose between Linear Regression and Decision Tree Regression models. The custom model class (`CustomModelTraining`) is easily extendable to include other models, such as Random Forests or SVMs.
 
-Both for the model development and the application we created custom classes wrappers for the scikit learn learn Pipelines modules. In that way we offer a modular solution. Each class implements different functionality or module of the data preprocessing pipeline. The different modules can be combined in modular pipeline with by controlling some input parameters in the pipelines. For the data preprocessing we have the data_preprocessing.py that implements the data downloading, and preprocessing (imputation, one-hot encoding, feature engineering, sampling). The modules are flexible and can be used both in the code for model training as well as for serving the predictions. We followed a similar approach for the model training development phase where we have provided a way for dynamic model selection that lets the user select between a Linear Regression or Decision Tree Regression model (see in model_training.py) as part of a dynamic model selection pipeline. The custom model class (CustomModelSwitcher) is flexible and can be extended to handle other models as needed, like Random Forests, SVMs, etc.
+### 3. Application
 
+**File:** `application.py`  
 
-### Application
+A REST API application built with FastAPI is accessible locally via Swagger. The application processes client-server communication for predictions using a POST request, passing feature values as part of the payload to adhere to security standards. Our custom preprocessing pipelines are used here to prepare the user input before scoring with the model.
 
-code in application.py
+### 4. Other Considerations
 
-For the application we implemented a simple REST API application based on the FastAPI that is accessible locally via the Swagger page. We implemented the communication between the client-server for the predictions via a POST request in order to pass the feature values as part of the payload adhering to the security standards. Also, we make use of our custom pipelines to preprocess the user input before the model scoring.
+**File:** `Dockerfile`  
 
-### Other considerations
+The application was containerized with Docker to ensure platform independence, as the development was done on a Linux environment. Detailed documentation and logging are included throughout the project to improve readability, facilitate debugging, and enhance maintainability.
 
-code in Dockerfile
+---
 
-All the code was developed in a Linux environment. Therefore we containerized the application with docker to be platform agnostic. We also include extensive code documentation as well as application logging to make the code and the debugging easier.
+## Installation and Setup
 
+### 1. Clone the Repository
 
---------------------------------------------------
+**clone:** git clone <https://github.com/ArgyChris/ModelRegression>
+
+cd ModelRegression
+
+### 2i. Create Environment (python ver. 3.7.9)
+
+**Windows:** python -m venv ModelRegression 
+
+source ModelRegression/bin/activate  
+
+pip install -r requirements_model_dev.txt
+
+### 2i. Create Environment (Linux in conda)
+
+**Linux:** conda create -n "ModelRegression" python=3.7.9
+
+conda create -n "ModelRegression" python=3.7.9
+
+pip install -r requirements_model_dev.txt
+
+### 3 Run the process to retrain the model
+
+python data_preprocessing_model_dev.py
+
+### 4 Build and run the application from the Docker image 
+
+**prerequisite:** Docker application is running or docker is installed in the environment
+
+docker build -r prediction-app .
+
+docker images (to confirm the build)
+
+uvicorn application:app --host 0.0.0.0 --port 8000 --reload 
+
+### 4 Access the swagger webpage  
+
+**Windows/Linux:** http://0.0.0.0:8000/docs
+
+---
